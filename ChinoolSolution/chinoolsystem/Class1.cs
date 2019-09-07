@@ -8,5 +8,6 @@ namespace chinoolsystem
 {
     public class Class1
     {
+
     }
 }
