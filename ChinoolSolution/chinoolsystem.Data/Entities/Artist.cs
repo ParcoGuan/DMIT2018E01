@@ -13,7 +13,7 @@ using System.ComponentModel.DataAnnotations;
 namespace chinoolsystem.Data.Entities
 {
     [Table("Artsties")]
-    public class Artists
+    public class Artist
     {
         [Key]
         public int ArtstId { get; set; }
@@ -40,7 +40,7 @@ namespace chinoolsystem.Data.Entities
         }
         
 
-        public virtual ICollection<Albums> Albums { get; set; }
+        public virtual ICollection<Album> Albums { get; set; }
 
 
 

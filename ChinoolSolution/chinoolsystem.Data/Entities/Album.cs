@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace chinoolsystem.Data.Entities
 {
-    public  class Albums
+    public  class Album
     {
         [Key]
         public int ArtstId { get; set; }
-
         public string Title { get; set; }
         public int ReleaseYear { get; set; }
         public int Albumid { get; set; }
@@ -36,6 +35,6 @@ namespace chinoolsystem.Data.Entities
             }
 
         }
-        public virtual Artists Artists { get; set; }
+        public virtual Artist Artists { get; set; }
     }
 }
