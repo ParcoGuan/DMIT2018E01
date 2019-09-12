@@ -7,11 +7,22 @@ using System.Web.UI.WebControls;
 
 namespace WebApp.Single_page
 {
+
+    
     public partial class flitersearchCRUD : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
+                BindArtitsList();
 
+            }
+        }
+
+        protected void BindArtitsList(dsa)
+        {
+            ArtistControl sysmer = Artfsa
         }
     }
 }
