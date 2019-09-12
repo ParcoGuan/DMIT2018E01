@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebApp.Single_page
+namespace WebApp.SamplePages
 {
 
     
@@ -20,9 +20,9 @@ namespace WebApp.Single_page
             }
         }
 
-        protected void BindArtitsList(dsa)
+        protected void BindArtitsList()
         {
-            ArtistControl sysmer = Artfsa
+            ArtistControlc
         }
     }
 }

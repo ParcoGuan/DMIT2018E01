@@ -21,7 +21,7 @@ namespace chinoolsystem.BLL
         {
             using (var context = new ChinoolContext())
             {
-                return context.Albums.Find(albumid);==
+                return context.Albums.Find(albumid);
             }
         }
     }
