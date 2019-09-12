@@ -65,11 +65,5 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WebApp\WebApp.csproj">
-      <Project>{91b6ffdf-fb00-4c96-aac7-f6a0cc8d9853}</Project>
-      <Name>WebApp</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

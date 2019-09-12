@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApp.Single_page {
+namespace WebApp.SamplePages {
     
     
-    public partial class flitersearchCRUD {
+    public partial class filterSearchPages {
         
         /// <summary>
         /// Label1 control.
@@ -22,12 +22,12 @@ namespace WebApp.Single_page {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// AtistList control.
+        /// ArtistList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList AtistList;
+        protected global::System.Web.UI.WebControls.DropDownList ArtistList;
     }
 }
