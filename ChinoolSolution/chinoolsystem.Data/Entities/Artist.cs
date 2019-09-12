@@ -16,7 +16,7 @@ namespace chinoolsystem.Data.Entities
     public class Artist
     {
         [Key]
-        public int ArtstId { get; set; }
+        public int ArtstieId { get; set; }
         private string _Name;
         
         public string Name

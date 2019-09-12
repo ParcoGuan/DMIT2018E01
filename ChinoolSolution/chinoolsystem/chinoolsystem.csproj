@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\AlbumControl.cs" />
+    <Compile Include="BLL\ArtistControl.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="DAL\ChinoolContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,13 +61,15 @@
       <Project>{873fff42-f510-4840-865a-58c44cec1cee}</Project>
       <Name>chinoolsystem.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebApp\WebApp.csproj">
+      <Project>{91b6ffdf-fb00-4c96-aac7-f6a0cc8d9853}</Project>
+      <Name>WebApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLL\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

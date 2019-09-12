@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace chinoolsystem.Data.Entities
 {
-    class MediaType
+    public class MediaType
     {
         [Key]
         public int MediaTypeid { get; set; }

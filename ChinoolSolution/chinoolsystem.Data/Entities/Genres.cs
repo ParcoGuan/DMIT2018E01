@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace chinoolsystem.Data.Entities
 {
 
-    class Genres
+    public class Genres
     {
         [Key]
 
