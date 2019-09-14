@@ -7,19 +7,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebApp.SamplePages
+namespace WebApp.SamplePage
 {
-    public partial class filterSearchPages : System.Web.UI.Page
+    public partial class FiletrSearchCURD : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                BindArtitsList();
 
-            }
         }
-
         protected void BindArtitsList()
         {
             ArtistControl sysmer = new ArtistControl();

@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="filterSearchPages.aspx.cs" Inherits="WebApp.SamplePages.filterSearchPages" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FiletrSearchCURD.aspx.cs" Inherits="WebApp.SamplePage.FiletrSearchCURD" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>Filter Search</h1>
+     <h1>Filter Search</h1>
     <blockquote class="alert alert-info">
         This page will review filter search techniques. This page will using
         code-behind and ObjectDataSource on multi-record controls. This page will
@@ -14,7 +14,7 @@
         &nbsp;&nbsp;
         <asp:LinkButton ID="FetchAlbums" runat="server" CausesValidation="false">Fetch Albums</asp:LinkButton>
         <br />
-        <asp:GridView ID="AlbumList" runat="server" AutoGenerateColumns="false" DataSourceID="AlbumListODS" AllowPaging="True" PageSize="5"  CssClass="table table-striped" GridLines="Horizontal" BorderStyle="None">
+        <asp:GridView ID="AlbumList" runat="server" AutoGenerateColumns="false" AllowPaging="True" PageSize="5"  CssClass="table table-striped" GridLines="Horizontal" BorderStyle="None">
             <Columns>
                 <asp:CommandField SelectText="View" ShowSelectButton="True" CausesValidation="false"></asp:CommandField>
                 <asp:TemplateField HeaderText="Album">

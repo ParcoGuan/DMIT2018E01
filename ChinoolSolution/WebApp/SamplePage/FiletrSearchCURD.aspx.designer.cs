@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApp.SamplePages {
+namespace WebApp.SamplePage {
     
     
-    public partial class filterSearchPages {
+    public partial class FiletrSearchCURD {
         
         /// <summary>
         /// label1 control.

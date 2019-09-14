@@ -83,7 +83,7 @@
 
                         </asp:MenuItem>
 
-                        <asp:MenuItem Text="Sample" NavigateUrl="~/SamplePages/flitersearchCRUD.aspx">
+                        <asp:MenuItem Text="Sample" NavigateUrl="~/SamplePages/FilterSearchPage.aspx">
 
                         </asp:MenuItem>
 

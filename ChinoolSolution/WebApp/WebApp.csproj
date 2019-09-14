@@ -191,7 +191,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Account\Web.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="SamplePages\filterSearchPages.aspx" />
+    <Content Include="SamplePage\FiletrSearchCURD.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -363,12 +363,12 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SamplePages\filterSearchPages.aspx.cs">
-      <DependentUpon>filterSearchPages.aspx</DependentUpon>
+    <Compile Include="SamplePage\FiletrSearchCURD.aspx.cs">
+      <DependentUpon>FiletrSearchCURD.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SamplePages\filterSearchPages.aspx.designer.cs">
-      <DependentUpon>filterSearchPages.aspx</DependentUpon>
+    <Compile Include="SamplePage\FiletrSearchCURD.aspx.designer.cs">
+      <DependentUpon>FiletrSearchCURD.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -432,7 +432,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59365</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:44382/</IISUrl>
+          <IISUrl>http://localhost:44383/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
