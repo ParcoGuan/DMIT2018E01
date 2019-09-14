@@ -11,7 +11,7 @@ namespace chinoolsystem.Data.Entities
     {
         [Key]
         public int Trackid { get; set; }
-        public int ArtstId { get; set; }
+        public int ArtstieId { get; set; }
         public string Name { get; set; }
 
         private string _Albumid;

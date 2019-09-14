@@ -13,7 +13,7 @@ namespace chinoolsystem.Data.Entities
     public  class Album
     {
         [Key]
-        public int ArtstId { get; set; }
+        public int ArtstieId { get; set; }
         public string Title { get; set; }
         public int ReleaseYear { get; set; }
         public int Albumid { get; set; }

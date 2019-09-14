@@ -28,7 +28,7 @@ namespace WebApp.SamplePages
 
             ArtistList.DataSource = info;
             ArtistList.DataTextField = nameof(Artist.Name);
-            ArtistList.DataTextField = nameof(Artist.ArtstieId);
+            ArtistList.DataTextField = nameof(Artist.ArtistId);
             ArtistList.DataBind();
             ArtistList.Items.Insert(0, "select......");
 

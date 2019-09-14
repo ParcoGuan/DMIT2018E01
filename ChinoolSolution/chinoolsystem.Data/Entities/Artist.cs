@@ -12,11 +12,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace chinoolsystem.Data.Entities
 {
-    [Table("Artsties")]
+    [Table("Artists")]
     public class Artist
     {
         [Key]
-        public int ArtstieId { get; set; }
+        public int ArtistId { get; set; }
         private string _Name;
         
         public string Name

@@ -10,12 +10,12 @@ namespace chinoolsystem.DAL
 {
    internal class ChinoolContext:DbContext
     {
-        public ChinoolContext():base("ChinoolDB")
-            {
+        public ChinoolContext():base("ChinookDB")
+        {
 
-            }
+        }
 
-        public DbSet<Artist> Artists{ get; set; }
+        public DbSet<Artist> Artists { get; set; }
         public DbSet<Album> Albums { get; set; }
 
 
