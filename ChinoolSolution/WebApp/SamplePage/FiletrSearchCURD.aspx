@@ -70,7 +70,7 @@
         <asp:ObjectDataSource ID="AlbumListODS" runat="server" 
         OldValuesParameterFormatString="original_{0}" 
         SelectMethod="Album_FindByArtist" 
-        TypeName="ChinookSystem.BLL.AlbumController">
+        TypeName="chinoolsystem.BLL.AlbumControl">
         <SelectParameters>
             <asp:ControlParameter ControlID="ArtistList" 
                 PropertyName="SelectedValue" DefaultValue="0" 
@@ -81,7 +81,7 @@
     <asp:ObjectDataSource ID="EditArtistListODS" runat="server" 
         OldValuesParameterFormatString="original_{0}" 
         SelectMethod="Artist_List" 
-        TypeName="ChinookSystem.BLL.ArtistController">
+        TypeName="chinoolsystem.BLL.ArtistControl">
     </asp:ObjectDataSource>
 
 </asp:Content>
