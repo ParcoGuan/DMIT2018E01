@@ -14,7 +14,7 @@
         &nbsp;&nbsp;
         <asp:LinkButton ID="FetchAlbums" runat="server" CausesValidation="false">Fetch Albums</asp:LinkButton>
         <br />
-        <asp:GridView ID="AlbumList" runat="server" AutoGenerateColumns="false" AllowPaging="True" PageSize="5"  CssClass="table table-striped" GridLines="Horizontal" BorderStyle="None">
+        <asp:GridView ID="AlbumList" runat="server" AutoGenerateColumns="false" AllowPaging="True" PageSize="5"  CssClass="table table-striped" GridLines="Horizontal" BorderStyle="None" OnSelectedIndexChanged="AlbumList_SelectedIndexChanged">
             <Columns>
                 <asp:CommandField SelectText="View" ShowSelectButton="True" CausesValidation="false"></asp:CommandField>
                 <asp:TemplateField HeaderText="Album">
@@ -67,4 +67,21 @@
         <asp:LinkButton ID="Update" runat="server" >Update</asp:LinkButton> &nbsp;&nbsp;
         <asp:LinkButton ID="Remove" runat="server" CausesValidation="false">Remove</asp:LinkButton>
     </div>
+        <asp:ObjectDataSource ID="AlbumListODS" runat="server" 
+        OldValuesParameterFormatString="original_{0}" 
+        SelectMethod="Album_FindByArtist" 
+        TypeName="ChinookSystem.BLL.AlbumController">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="ArtistList" 
+                PropertyName="SelectedValue" DefaultValue="0" 
+                Name="artistid" Type="Int32">
+            </asp:ControlParameter>
+        </SelectParameters>
+    </asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="EditArtistListODS" runat="server" 
+        OldValuesParameterFormatString="original_{0}" 
+        SelectMethod="Artist_List" 
+        TypeName="ChinookSystem.BLL.ArtistController">
+    </asp:ObjectDataSource>
+
 </asp:Content>

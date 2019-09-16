@@ -13,6 +13,10 @@ namespace WebApp.SamplePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!Page.IsPostBack)
+            {
+                BindArtitsList();
+            }
 
         }
         protected void BindArtitsList()
@@ -25,11 +29,37 @@ namespace WebApp.SamplePage
             ArtistList.DataTextField = nameof(Artist.Name);
             ArtistList.DataTextField = nameof(Artist.ArtistId);
             ArtistList.DataBind();
-            ArtistList.Items.Insert(0, "select......");
+            //ArtistList.Items.Insert(0, "select......");
 
 
 
 
+        }
+
+        protected void AlbumList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow agvrow = AlbumList.Rows[AlbumList.SelectedIndex];
+            //retreive the value from a web control located within
+            //   the GridView cell
+            string albumid = (agvrow.FindControl("AlbumId") as Label).Text;
+
+            //error handling will need to be added
+            AlbumControl sysmgr = new AlbumControl();
+            Album datainfo = sysmgr.Album_Get(int.Parse(albumid));
+            if (datainfo == null)
+            {
+                //clear the controls
+                //throw an exception
+            }
+            else
+            {
+                EditAlbumID.Text = datainfo.Albumid.ToString();
+                EditTitle.Text = datainfo.Title;
+                EditAlbumArtistList.SelectedValue = datainfo.ArtistId.ToString();
+                EditReleaseYear.Text = datainfo.ReleaseYear.ToString();
+                EditReleaseLabel.Text =
+                    datainfo.ReleaseLabel == null ? "" : datainfo.ReleaseLabel;
+            }
         }
     }
 }

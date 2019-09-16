@@ -34,7 +34,7 @@ namespace chinoolsystem.BLL
             using (var context = new ChinoolContext())
             {
                 var results = from x in context.Albums
-                              where x.ArtstieId == artistid
+                              where x.ArtistId == artistid
                               select x;
                 return results.ToList();
             }
