@@ -13,6 +13,15 @@ namespace WebApp.SamplePage {
     public partial class FiletrSearchCURD {
         
         /// <summary>
+        /// MessageUserControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DMIT2018Common.UserControls.MessageUserControl MessageUserControl;
+        
+        /// <summary>
         /// label1 control.
         /// </summary>
         /// <remarks>
@@ -164,5 +173,23 @@ namespace WebApp.SamplePage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton Remove;
+        
+        /// <summary>
+        /// AlbumListODS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource AlbumListODS;
+        
+        /// <summary>
+        /// EditArtistListODS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource EditArtistListODS;
     }
 }

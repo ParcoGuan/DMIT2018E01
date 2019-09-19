@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="BLL\AlbumControl.cs" />
     <Compile Include="BLL\ArtistControl.cs" />
+    <Compile Include="BLL\BusinessRuleException.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="DAL\ChinoolContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
