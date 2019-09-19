@@ -43,5 +43,44 @@ namespace ChinookSystem.BLL
                 return results.ToList();
             }
         }
+        public int Album_Add(Album item) 
+        {
+         
+            using (var context =new ChinookContext())
+            {
+                context.Albums.Add(item);
+                context.SaveChanges();
+                return item.AlbumId;
+            }
+         
+        }
+
+        public int Album_Update(Album item)
+        {
+            using (var context =new ChinookContext())
+            {
+                context.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                return context.SaveChanges();
+            }
+        }
+        public int Album_Delete(int albumid)
+        {
+            using (var context = new ChinookContext())
+            {
+                var existing = context.Albums.Find(albumid);
+                if(existing==null)
+                {
+                    throw new Exception("Album not find");
+                }
+                else
+                {
+                    context.Albums.Remove(existing);
+                    return context.SaveChanges();
+                }
+            }
+        }
+
     }
+
+    
 }
