@@ -119,12 +119,88 @@ namespace WebApp.SamplePages
 
         protected void Update_Click(object sender, EventArgs e)
         {
+            if (Page.IsValid)
+            {
+                int editalbumid = 0;
+                string albumid = EditAlbumID.Text;
+                if (string.IsNullOrEmpty(albumid))
+                {
+                    MessageUserControl.ShowInfo("Attention", "need album before edting ");
 
+                }
+
+                else if (!int.TryParse(albumid, out editalbumid))
+                {
+                    MessageUserControl.ShowInfo("Attention","current album id is invalid");
+                }
+                else
+                { 
+                   
+                    Album theAlbum = new Album();
+                    theAlbum.AlbumId = editalbumid;
+                    theAlbum.Title = EditTitle.Text;
+                    theAlbum.ArtistId = int.Parse(EditAlbumArtistList.SelectedValue);
+                    theAlbum.ReleaseYear = int.Parse(EditReleaseYear.Text);
+                    theAlbum.ReleaseLabel = EditReleaseLabel.Text == "" ? null : EditReleaseLabel.Text;
+
+                    MessageUserControl.TryRun(() =>
+                    {
+                        AlbumController sysmgr = new AlbumController();
+                        int rowsaffected = sysmgr.Album_Update(theAlbum);
+
+                        if (rowsaffected > 0)
+                        {
+                            AlbumList.DataBind();
+                        }
+                        else
+                        {
+                            throw new Exception("album was not found ");
+                        }
+
+                    }, "successful", "album Updated");
+
+                }
+
+            }
         }
 
         protected void Remove_Click(object sender, EventArgs e)
         {
+           
+                int editalbumid = 0;
+                string albumid = EditAlbumID.Text;
+                if (string.IsNullOrEmpty(albumid))
+                {
+                    MessageUserControl.ShowInfo("Attention", "need album before edting ");
 
+                }
+
+                else if (!int.TryParse(albumid, out editalbumid))
+                {
+                    MessageUserControl.ShowInfo("Attention", "current album id is invalid");
+                }
+                else
+                {
+
+                    MessageUserControl.TryRun(() =>
+                    {
+                        AlbumController sysmgr = new AlbumController();
+                        int rowsaffected = sysmgr.Album_Delete(editalbumid);
+
+                        if (rowsaffected > 0)
+                        {
+                            AlbumList.DataBind();
+                            EditAlbumID.Text = "";
+                        }
+                        else
+                        {
+                            throw new Exception("album was not found ");
+                        }
+
+                    }, "successful", "album Remove");
+
+                }
+            
         }
     }
 }

@@ -96,7 +96,7 @@
         <br />
         <asp:LinkButton ID="Add" runat="server" OnClick="Add_Click" >Add</asp:LinkButton> &nbsp;&nbsp;
         <asp:LinkButton ID="Update" runat="server" OnClick="Update_Click" >Update</asp:LinkButton> &nbsp;&nbsp;
-        <asp:LinkButton ID="Remove" runat="server" CausesValidation="false" OnClick="Remove_Click">Remove</asp:LinkButton>
+        <asp:LinkButton ID="Remove" runat="server" CausesValidation="false" OnClick="Remove_Click" OnClientClick ="return confirm('are you sure wish to remove this album from the collection')">Remove</asp:LinkButton>
     </div>
     <asp:ObjectDataSource ID="AlbumListODS" runat="server" 
         OldValuesParameterFormatString="original_{0}" 
