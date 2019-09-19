@@ -1,5 +1,11 @@
 ﻿<%@ Page Title="CRUD Review" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FilterSearchCRUD.aspx.cs" Inherits="WebApp.SamplePages.FilterSearchCRUD" %>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+<%@ Register Src="~/UserControls/MessageUserControl.ascx" TagPrefix="uc1" TagName="MessageUserControl" %>
+
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
 =======
 
 <%@ Register Src="~/UserControls/MessageUserControl.ascx" TagPrefix="uc1" TagName="MessageUserControl" %>
@@ -13,9 +19,12 @@
         use various form controls. This will review event driven logic reuired for a CRUD process.
     </blockquote>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <div class="col-md-offset-1">
       
 =======
+=======
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
 
     <div class="col-md-offset-1">
         <uc1:MessageUserControl runat="server" ID="MessageUserControl" />
@@ -38,6 +47,9 @@
              Type="Integer" MinimumValue="1950"></asp:RangeValidator>
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
         <br />
+<<<<<<< HEAD
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
+=======
 >>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
         <asp:Label ID="label1" runat="server" Text="Select an artist:"></asp:Label>
         &nbsp;&nbsp;
@@ -110,7 +122,13 @@
         OldValuesParameterFormatString="original_{0}" 
         SelectMethod="Album_FindByArtist" 
 <<<<<<< HEAD
+<<<<<<< HEAD
         TypeName="ChinookSystem.BLL.AlbumController">
+=======
+        TypeName="ChinookSystem.BLL.AlbumController"
+         OnSelected="CheckForException"
+        >
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
 =======
         TypeName="ChinookSystem.BLL.AlbumController"
          OnSelected="CheckForException"
@@ -127,7 +145,12 @@
         OldValuesParameterFormatString="original_{0}" 
         SelectMethod="Artist_List" 
 <<<<<<< HEAD
+<<<<<<< HEAD
         TypeName="ChinookSystem.BLL.ArtistController">
+=======
+        TypeName="ChinookSystem.BLL.ArtistController"
+         OnSelected="CheckForException">
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
 =======
         TypeName="ChinookSystem.BLL.ArtistController"
          OnSelected="CheckForException">

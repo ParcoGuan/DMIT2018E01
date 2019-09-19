@@ -20,6 +20,12 @@ namespace WebApp.SamplePages
             {
                 BindArtistList();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+                //set the max value for the Validation control
+                //RangeEditReleaseYear
+                RangeEditReleaseYear.MaximumValue = DateTime.Today.Year.ToString();
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
 =======
                 //set the max value for the Validation control
                 //RangeEditReleaseYear
@@ -41,7 +47,10 @@ namespace WebApp.SamplePages
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
         //in code behind to be called from ODS
         protected void CheckForException(object sender, ObjectDataSourceStatusEventArgs e)
         {
@@ -49,6 +58,9 @@ namespace WebApp.SamplePages
         }
 
 
+<<<<<<< HEAD
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
+=======
 >>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
         protected void AlbumList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -59,6 +71,7 @@ namespace WebApp.SamplePages
             string albumid = (agvrow.FindControl("AlbumId") as Label).Text;
 
             //error handling will need to be added
+<<<<<<< HEAD
 <<<<<<< HEAD
             AlbumController sysmgr = new AlbumController();
             Album datainfo = sysmgr.Album_Get(int.Parse(albumid));
@@ -77,6 +90,8 @@ namespace WebApp.SamplePages
                     datainfo.ReleaseLabel == null ? "" : datainfo.ReleaseLabel;
             }
 =======
+=======
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
             MessageUserControl.TryRun(() =>
             {
                 //place your processing code
@@ -99,6 +114,9 @@ namespace WebApp.SamplePages
                 }
             },"Find Album", "Album found"); //strings on this line are success message
            
+<<<<<<< HEAD
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
+=======
 >>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
         }
     }

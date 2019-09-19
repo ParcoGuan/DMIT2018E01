@@ -38,10 +38,14 @@ namespace WebApp.SamplePage
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         protected void AlbumList_SelectedIndexChanged1(object sender, EventArgs e)
 =======
         protected void AlbumList_SelectedIndexChanged(object sender, EventArgs e)
 >>>>>>> 84ad18ad5f308d10caf570dca1653c3326a6222e
+=======
+        protected void AlbumList_SelectedIndexChanged(object sender, EventArgs e)
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
 =======
         protected void AlbumList_SelectedIndexChanged(object sender, EventArgs e)
 >>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
@@ -52,6 +56,7 @@ namespace WebApp.SamplePage
             string albumid = (agvrow.FindControl("AlbumId") as Label).Text;
 
             //error handling will need to be added
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             MessageUserControl.TryRun(() =>
@@ -78,6 +83,8 @@ namespace WebApp.SamplePage
 =======
 =======
 >>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
+=======
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
             AlbumControl sysmgr = new AlbumControl();
             Album datainfo = sysmgr.Album_Get(int.Parse(albumid));
             if (datainfo == null)
@@ -95,7 +102,10 @@ namespace WebApp.SamplePage
                     datainfo.ReleaseLabel == null ? "" : datainfo.ReleaseLabel;
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 84ad18ad5f308d10caf570dca1653c3326a6222e
+=======
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
 =======
 >>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
         }

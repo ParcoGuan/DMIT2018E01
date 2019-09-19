@@ -19,6 +19,7 @@
         <br />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
               <asp:GridView ID="AlbumList" runat="server"
             AutoGenerateColumns="false" AllowPaging="True"
             PageSize="5" CssClass="table table-striped"
@@ -28,6 +29,9 @@
 =======
         <asp:GridView ID="AlbumList" runat="server" AutoGenerateColumns="false" AllowPaging="True" PageSize="5"  CssClass="table table-striped" GridLines="Horizontal" BorderStyle="None" OnSelectedIndexChanged="AlbumList_SelectedIndexChanged">
 >>>>>>> 84ad18ad5f308d10caf570dca1653c3326a6222e
+=======
+        <asp:GridView ID="AlbumList" runat="server" AutoGenerateColumns="false" AllowPaging="True" PageSize="5"  CssClass="table table-striped" GridLines="Horizontal" BorderStyle="None" OnSelectedIndexChanged="AlbumList_SelectedIndexChanged">
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
 =======
         <asp:GridView ID="AlbumList" runat="server" AutoGenerateColumns="false" AllowPaging="True" PageSize="5"  CssClass="table table-striped" GridLines="Horizontal" BorderStyle="None" OnSelectedIndexChanged="AlbumList_SelectedIndexChanged">
 >>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
@@ -88,6 +92,7 @@
     </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <asp:ObjectDataSource ID="AlbumListODS" runat="server"
         OldValuesParameterFormatString="original_{0}"
         SelectMethod="Album_FindByArtist"
@@ -97,6 +102,8 @@
                 PropertyName="SelectedValue" DefaultValue="0"
                 Name="artistid" Type="Int32"></asp:ControlParameter>
 =======
+=======
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
 =======
 >>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
         <asp:ObjectDataSource ID="AlbumListODS" runat="server" 
@@ -109,7 +116,10 @@
                 Name="artistid" Type="Int32">
             </asp:ControlParameter>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 84ad18ad5f308d10caf570dca1653c3326a6222e
+=======
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
 =======
 >>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
         </SelectParameters>
@@ -119,6 +129,7 @@
         SelectMethod="Artist_List" 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         TypeName="chinoolSystem.BLL.ArtistControl">
     </asp:ObjectDataSource>
 =======
@@ -126,6 +137,11 @@
     </asp:ObjectDataSource>
 
 >>>>>>> 84ad18ad5f308d10caf570dca1653c3326a6222e
+=======
+        TypeName="chinoolsystem.BLL.ArtistControl">
+    </asp:ObjectDataSource>
+
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
 =======
         TypeName="chinoolsystem.BLL.ArtistControl">
     </asp:ObjectDataSource>

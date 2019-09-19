@@ -40,7 +40,11 @@ namespace ChinookSystem.BLL
                               where x.ArtistId == artistid
                               select x;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+               
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
 =======
                
 >>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087

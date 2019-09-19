@@ -14,7 +14,10 @@ namespace WebApp.SamplePages {
         
         /// <summary>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
         /// MessageUserControl control.
         /// </summary>
         /// <remarks>
@@ -60,6 +63,9 @@ namespace WebApp.SamplePages {
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
         
         /// <summary>
+<<<<<<< HEAD
+>>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
+=======
 >>>>>>> 597c2c187e8c192348c55bca9bdbae0d87436087
         /// label1 control.
         /// </summary>
