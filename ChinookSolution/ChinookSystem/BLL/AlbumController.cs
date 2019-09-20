@@ -15,7 +15,7 @@ namespace ChinookSystem.BLL
     [DataObject]
     public class AlbumController
     {
-        [DataObjectMethod(DataObjectMethodType.Insert, false)]
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<Album> Album_List()
         {
             using (var context = new ChinookContext())
@@ -57,6 +57,7 @@ namespace ChinookSystem.BLL
             }
          
         }
+        [DataObjectMethod(DataObjectMethodType.Update,false)]
 
         public int Album_Update(Album item)
         {
@@ -71,13 +72,10 @@ namespace ChinookSystem.BLL
 
         public int Album_Delete(Album item)
         {
-            return Album_Delete(item albumid);
-
+            return Album_Delete(item.AlbumId);
 
 
         }
-
-
 
         public int Album_Delete(int albumid)
         {
