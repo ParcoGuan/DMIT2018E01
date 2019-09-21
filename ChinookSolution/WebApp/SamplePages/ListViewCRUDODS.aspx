@@ -40,6 +40,9 @@
             <asp:RequiredFieldValidator ID="RequiredvalidtexttboxE" runat="server" ErrorMessage="title is Required" Display ="None" ControlToValidate ="TitleTextBoxE" ValidationGroup ="Egroup"></asp:RequiredFieldValidator>
             <asp:RequiredFieldValidator ID="RevalidtexttboxE" runat="server" ErrorMessage="title is limited to 160 charater" Display ="None"
                  ControlToValidate ="TitleTextBoxE" ValidationGroup ="Egroup" ValidationExperssion=" {1,160}$"></asp:RequiredFieldValidator>
+            <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="year is 1950 to today " Display ="None" ControlToValidate ="ReleaseYearTextBox"
+                ValidationGroup ="Egroup" MinimumValue="1950" MaximumValue =""></asp:RangeValidator>
+            
             <tr style="background-color: #999999;">
                 <td>
                     <asp:Button runat="server" CommandName="Update" Text="Update" ID="UpdateButton" />
@@ -76,6 +79,9 @@
                 ControlToValidate ="TitleTextBoxI" ValidationGroup ="Igroup"></asp:RequiredFieldValidator>
              <asp:RequiredFieldValidator ID="RevalidtexttboxI" runat="server" ErrorMessage="title is limited to 160 charater" Display ="None"
                  ControlToValidate ="TitleTextBoxI" ValidationGroup ="Igroup" ValidationExperssion=" {1,160}$"></asp:RequiredFieldValidator>
+
+
+
             <tr style="">
                 <td>
                     <asp:Button runat="server" CommandName="Insert" Text="Insert" ID="InsertButton" />
