@@ -6,20 +6,21 @@ namespace ChinookSystem.Data.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Artist
+    public partial class AspNetRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Artist()
+        public AspNetRole()
         {
-            Albums = new HashSet<Album>();
+            AspNetUsers = new HashSet<AspNetUser>();
         }
 
-        public int ArtistId { get; set; }
+        public string Id { get; set; }
 
-        [StringLength(120,ErrorMessage="artist name is limited to 120 chararater")]
+        [Required]
+        [StringLength(256)]
         public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Album> Albums { get; set; }
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }
