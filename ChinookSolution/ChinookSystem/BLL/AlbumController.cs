@@ -16,6 +16,10 @@ namespace ChinookSystem.BLL
     [DataObject]
     public class AlbumController
     {
+        private List<string> reason = new List<string>;
+
+
+
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<Album> Album_List()
         {
@@ -52,9 +56,16 @@ namespace ChinookSystem.BLL
          
             using (var context =new ChinookContext())
             {
-                context.Albums.Add(item);
-                context.SaveChanges();
-                return item.AlbumId;
+                if (CheckReleaseYear(item))
+                {
+                    context.Albums.Add(item);
+                    context.SaveChanges();
+                    return item.AlbumId;
+                }
+                else
+                {
+                    throw new BusinessRule("")
+                }
             }
          
         }
@@ -95,6 +106,30 @@ namespace ChinookSystem.BLL
             }
         }
 
+
+
+        private bool CheckReleaseYear(Album item)
+        {
+            bool isValid =true;
+            int releaseyear;
+            if (string.IsNullOrEmpty(item.ReleaseYear.ToString()))
+            {
+                isValid = false;
+                reason.Add("Release year is required");
+            }
+           else if(int.TryParse(item.ReleaseYear.ToString(), out releaseyear
+))
+            {
+                isValid = false;
+                reason.Add("Release year is not an number");
+            }
+           else if (releaseyear < 1950 || releaseyear >DateTime.Today.Year)
+            {
+                isValid = false;
+                reason.Add(string.Format("album is not in between 1950 - today"));
+            }
+            return isValid;
+        }
     }
 
     
