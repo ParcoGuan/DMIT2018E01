@@ -16,7 +16,7 @@ namespace ChinookSystem.BLL
     [DataObject]
     public class AlbumController
     {
-        private List<string> reason = new List<string>;
+        private List<string> reason = new List<string>
 
 
 
