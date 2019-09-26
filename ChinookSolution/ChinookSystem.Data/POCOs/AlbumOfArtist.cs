@@ -8,5 +8,6 @@ namespace ChinookSystem.Data.POCOs
 {
     class AlbumOfArtist
     {
+
     }
 }
