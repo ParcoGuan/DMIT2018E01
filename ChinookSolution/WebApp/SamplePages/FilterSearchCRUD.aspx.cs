@@ -61,7 +61,7 @@ namespace WebApp.SamplePages
                 
                 if (datainfo == null)
                 {
-                    //ClearControls();
+                    ClearControls();
                     throw new Exception("Record no longer exists on file.");
                 }
                 else
@@ -77,25 +77,25 @@ namespace WebApp.SamplePages
            
         }
 
-        protected  void ClearControls()
+        protected void ClearControls()
         {
             EditAlbumID.Text = "";
-            EditAlbumArtistList.Text = "";
+            EditTitle.Text = "";
             EditReleaseYear.Text = "";
             EditReleaseLabel.Text = "";
-            EditAlbumArtistList.SelectedIndex =0;
+            EditAlbumArtistList.SelectedIndex = 0;
         }
-
         protected void Add_Click(object sender, EventArgs e)
         {
-            if(Page.IsValid)
+            if (Page.IsValid)
             {
                 string albumtitle = EditTitle.Text;
                 int albumyear = int.Parse(EditReleaseYear.Text);
-                string albumlabel = EditReleaseLabel.Text == "" ? null : EditReleaseLabel.Text;
+                string albumlabel = EditReleaseLabel.Text == "" ? 
+                        null : EditReleaseLabel.Text;
                 int albumartist = int.Parse(EditAlbumArtistList.SelectedValue);
 
-                Album theAlbum =new Album();
+                Album theAlbum = new Album();
                 theAlbum.Title = albumtitle;
                 theAlbum.ArtistId = albumartist;
                 theAlbum.ReleaseYear = albumyear;
@@ -110,10 +110,7 @@ namespace WebApp.SamplePages
                     {
                         AlbumList.DataBind();
                     }
-                }, "successful", "album added");
-                
-
-
+                },"Successful","Album added");
             }
         }
 
@@ -125,82 +122,68 @@ namespace WebApp.SamplePages
                 string albumid = EditAlbumID.Text;
                 if (string.IsNullOrEmpty(albumid))
                 {
-                    MessageUserControl.ShowInfo("Attention", "need album before edting ");
-
+                    MessageUserControl.ShowInfo("Attention","Lookup the album before editing");
                 }
-
                 else if (!int.TryParse(albumid, out editalbumid))
                 {
-                    MessageUserControl.ShowInfo("Attention","current album id is invalid");
+                    MessageUserControl.ShowInfo("Attention","Current albumid is invalid. Preform lookukp again.");
                 }
                 else
-                { 
-                   
+                {
                     Album theAlbum = new Album();
-                    theAlbum.AlbumId = editalbumid;
+                    theAlbum.AlbumId = editalbumid;  //include pkey
                     theAlbum.Title = EditTitle.Text;
                     theAlbum.ArtistId = int.Parse(EditAlbumArtistList.SelectedValue);
-                    theAlbum.ReleaseYear = int.Parse(EditReleaseYear.Text);
-                    theAlbum.ReleaseLabel = EditReleaseLabel.Text == "" ? null : EditReleaseLabel.Text;
+                    theAlbum.ReleaseYear = int.Parse(EditReleaseYear.Text); ;
+                    theAlbum.ReleaseLabel = EditReleaseLabel.Text == "" ?
+                            null : EditReleaseLabel.Text;
 
                     MessageUserControl.TryRun(() =>
                     {
                         AlbumController sysmgr = new AlbumController();
                         int rowsaffected = sysmgr.Album_Update(theAlbum);
-
                         if (rowsaffected > 0)
                         {
                             AlbumList.DataBind();
                         }
                         else
                         {
-                            throw new Exception("album was not found ");
+                            throw new Exception("Album was not found. Repeat lookup and update again.");
                         }
-
-                    }, "successful", "album Updated");
-
+                    }, "Successful", "Album updated");
                 }
-
             }
         }
 
         protected void Remove_Click(object sender, EventArgs e)
         {
-           
-                int editalbumid = 0;
-                string albumid = EditAlbumID.Text;
-                if (string.IsNullOrEmpty(albumid))
+            int editalbumid = 0;
+            string albumid = EditAlbumID.Text;
+            if (string.IsNullOrEmpty(albumid))
+            {
+                MessageUserControl.ShowInfo("Attention", "Lookup the album before editing");
+            }
+            else if (!int.TryParse(albumid, out editalbumid))
+            {
+                MessageUserControl.ShowInfo("Attention", "Current albumid is invalid. Preform lookukp again.");
+            }
+            else
+            {
+                MessageUserControl.TryRun(() =>
                 {
-                    MessageUserControl.ShowInfo("Attention", "need album before edting ");
-
-                }
-
-                else if (!int.TryParse(albumid, out editalbumid))
-                {
-                    MessageUserControl.ShowInfo("Attention", "current album id is invalid");
-                }
-                else
-                {
-
-                    MessageUserControl.TryRun(() =>
+                    AlbumController sysmgr = new AlbumController();
+                    int rowsaffected = sysmgr.Album_Delete(editalbumid);
+                    if (rowsaffected > 0)
                     {
-                        AlbumController sysmgr = new AlbumController();
-                        int rowsaffected = sysmgr.Album_Delete(editalbumid);
-
-                        if (rowsaffected > 0)
-                        {
-                            AlbumList.DataBind();
-                            EditAlbumID.Text = "";
-                        }
-                        else
-                        {
-                            throw new Exception("album was not found ");
-                        }
-
-                    }, "successful", "album Remove");
-
-                }
-            
+                        AlbumList.DataBind();
+                        EditAlbumID.Text = "";
+                    }
+                    else
+                    {
+                        throw new Exception("Album was not found. Repeat lookup and remove again.");
+                    }
+                }, "Successful", "Album Removed");
+            }
         }
     }
 }

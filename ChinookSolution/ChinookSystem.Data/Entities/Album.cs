@@ -17,14 +17,16 @@ namespace ChinookSystem.Data.Entities
         public int AlbumId { get; set; }
 
         [Required(ErrorMessage ="Album title is required")]
-        [StringLength(160,ErrorMessage="album title is limited to 160 charater ")]
+        [StringLength(160,ErrorMessage ="Album title is limited to 160 characters")]
         public string Title { get; set; }
 
         public int ArtistId { get; set; }
 
+        //the Range validation annotation can check a field for a range of values
+        //the minimum and maximum values MUST be constants
         public int ReleaseYear { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "Album label is limited to 50 characters")]
         public string ReleaseLabel { get; set; }
 
         public virtual Artist Artist { get; set; }

@@ -10,60 +10,51 @@
 namespace WebApp.SamplePages {
     
     
-    public partial class ListViewCRUDODS {
+    public partial class DisplayArtistAlbums {
         
         /// <summary>
-        /// MessageUserControl control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DMIT2018Common.UserControls.MessageUserControl MessageUserControl;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// ValidationSummaryInsert control.
+        /// ArtistName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummaryInsert;
+        protected global::System.Web.UI.WebControls.TextBox ArtistName;
         
         /// <summary>
-        /// ValidationSummaryEdit control.
+        /// Fetch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummaryEdit;
+        protected global::System.Web.UI.WebControls.Button Fetch;
         
         /// <summary>
-        /// AlbumList control.
+        /// ArtistAlbumsList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView AlbumList;
+        protected global::System.Web.UI.WebControls.GridView ArtistAlbumsList;
         
         /// <summary>
-        /// AlbumListODS control.
+        /// ArtistAlbumsListODS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource AlbumListODS;
-        
-        /// <summary>
-        /// ArtistListODS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ArtistListODS;
+        protected global::System.Web.UI.WebControls.ObjectDataSource ArtistAlbumsListODS;
     }
 }

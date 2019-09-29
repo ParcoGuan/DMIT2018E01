@@ -88,8 +88,11 @@
                                 <asp:MenuItem Text="Review CRUD"
                                      NavigateUrl="~/SamplePages/FilterSearchCRUD.aspx">
                                 </asp:MenuItem>
-                                 <asp:MenuItem Text="List View CRUD"
+                                <asp:MenuItem Text="ListView CRUD using ODS"
                                      NavigateUrl="~/SamplePages/ListViewCRUDODS.aspx">
+                                </asp:MenuItem>
+                                <asp:MenuItem Text="LinqPad to WebApp"
+                                     NavigateUrl="~/SamplePages/DisplayArtistAlbums.aspx">
                                 </asp:MenuItem>
                             </asp:MenuItem>
                         </Items>

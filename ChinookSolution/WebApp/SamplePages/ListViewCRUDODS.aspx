@@ -3,68 +3,109 @@
 <%@ Register Src="~/UserControls/MessageUserControl.ascx" TagPrefix="uc1" TagName="MessageUserControl" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>List View ODS CRUD</h1>
+   <h1>ListView ODS CRUD</h1>
     <blockquote class="alert alert-info">
-        This page will review demostrate a CRUD process using the list view control and only ODS datascoure
+        This page will demonstrate a CRUD process using the List
+        view control and only ODS datasources.
     </blockquote>
+    <br />
     <uc1:MessageUserControl runat="server" ID="MessageUserControl" />
-
-    <asp:ListView ID="AlbumList" runat="server" DataSourceID="AlbumListODS" InsertItemPosition="LastItem" DataKeyNames="AlbumId">
+    <br />
+    <asp:ValidationSummary ID="ValidationSummaryInsert" runat="server"
+         HeaderText="Correct the following concerns on the insert record."
+         ValidationGroup="IGroup"/>
+    <asp:ValidationSummary ID="ValidationSummaryEdit" runat="server"
+         HeaderText="Correct the following concerns on the edit record."
+         ValidationGroup="EGroup"/>
+    <br />
+    <asp:ListView ID="AlbumList" runat="server" 
+        DataSourceID="AlbumListODS"  DataKeyNames="AlbumId"
+        InsertItemPosition="LastItem" >
         <AlternatingItemTemplate>
             <tr style="background-color: #FFFFFF; color: #284775;">
                 <td>
-                    <asp:Button runat="server" CommandName="Delete" Text="Remove" ID="DeleteButton"  OnClientClick ="return confirm('Are you sure you want to remove')"/>
+                    <asp:Button runat="server" CommandName="Delete" Text="Remove" ID="DeleteButton" 
+                         OnClientClick="return confirm('Are you sure you wish to remove.')"/>
                     <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
                 </td>
                 <td>
-                    <asp:Label Text='<%# Eval("AlbumId") %>' runat="server" ID="AlbumIdLabel"  Width="50px" Enabled ="false" /></td>
+                    <asp:Label Text='<%# Eval("AlbumId") %>' runat="server" ID="AlbumIdLabel"
+                        width="50px" Enabled="false"/></td>
                 <td>
-                    <asp:Label Text='<%# Eval("Title") %>' runat="server" ID="TitleLabel" /></td>
+                    <asp:Label Text='<%# Eval("Title") %>' runat="server" ID="TitleLabel" 
+                         Width="400px"/></td>
                 <td>
-                    
+
                     <asp:DropDownList ID="ArtistList" runat="server" 
-                        DataSourceID="ArtistListODS" DataTextField="Name" 
-                        DataValueField="ArtistId" SelectedValue='<%# Eval("ArtistId") %>' Enabled="false" Width="300px" >
-
+                        DataSourceID="ArtistListODS" 
+                        DataTextField="Name" 
+                        DataValueField="ArtistId"
+                        SelectedValue ='<%# Eval("ArtistId") %>'
+                        Enabled="false" Width="300px">
                     </asp:DropDownList>
-
                 </td>
                 <td>
-                    <asp:Label Text='<%# Eval("ReleaseYear") %>' runat="server" ID="ReleaseYearLabel"  Width="50px"/></td>
+                    <asp:Label Text='<%# Eval("ReleaseYear") %>' runat="server" ID="ReleaseYearLabel"
+                         Width="50px"/></td>
                 <td>
                     <asp:Label Text='<%# Eval("ReleaseLabel") %>' runat="server" ID="ReleaseLabelLabel" /></td>
-                
+               
             </tr>
         </AlternatingItemTemplate>
         <EditItemTemplate>
-            <asp:RequiredFieldValidator ID="RequiredvalidtexttboxE" runat="server" ErrorMessage="title is Required" Display ="None" ControlToValidate ="TitleTextBoxE" ValidationGroup ="Egroup"></asp:RequiredFieldValidator>
-            <asp:RequiredFieldValidator ID="RevalidtexttboxE" runat="server" ErrorMessage="title is limited to 160 charater" Display ="None"
-                 ControlToValidate ="TitleTextBoxE" ValidationGroup ="Egroup" ValidationExperssion=" {1,160}$"></asp:RequiredFieldValidator>
-            <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="year is 1950 to today " Display ="None" ControlToValidate ="ReleaseYearTextBox"
-                ValidationGroup ="Egroup" MinimumValue="1950" MaximumValue =""></asp:RangeValidator>
-            
+            <asp:RequiredFieldValidator ID="RequiredTitleTextBoxE" runat="server" 
+                ErrorMessage="Title is required" Display="None" 
+                 ControlToValidate="TitleTextBoxE" ValidationGroup="EGroup">
+            </asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegExTitleTextBoxE" runat="server" 
+                ErrorMessage="Title is limited to 160 characters" Display="None"
+                 ControlToValidate="TitleTextBoxE" ValidationGroup="EGroup"
+                 ValidationExpression="^.{1,160}$">
+            </asp:RegularExpressionValidator>
+<%--            <asp:RequiredFieldValidator ID="RequiredReleaseYearTextBoxE" runat="server" 
+                ErrorMessage="Year is required" Display="None" 
+                 ControlToValidate="ReleaseYearTextBoxE" ValidationGroup="EGroup">
+            </asp:RequiredFieldValidator>
+            <asp:RangeValidator ID="RangeReleaseYearTextBoxE" runat="server" 
+                ErrorMessage="Year must be between 1950 and today" Display="None"
+                 ControlToValidate="ReleaseYearTextBoxE" ValidationGroup="EGroup"
+                 MinimumValue="1950" MaximumValue='<%# DateTime.Today.Year %>'
+                 Type="integer">
+            </asp:RangeValidator>--%>
+             <asp:RegularExpressionValidator ID="RegExReleaseLabelTextBoxE" runat="server" 
+                ErrorMessage="Label is limited to 50 characters" Display="None"
+                 ControlToValidate="ReleaseLabelTextBoxE" ValidationGroup="EGroup"
+                 ValidationExpression="^.{0,50}$">
+            </asp:RegularExpressionValidator>
             <tr style="background-color: #999999;">
                 <td>
-                    <asp:Button runat="server" CommandName="Update" Text="Update" ID="UpdateButton" />
+                    <asp:Button runat="server" CommandName="Update" Text="Update" ID="UpdateButton" 
+                         ValidationGroup="EGroup" />
                     <asp:Button runat="server" CommandName="Cancel" Text="Cancel" ID="CancelButton" />
                 </td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("AlbumId") %>' runat="server" ID="AlbumIdTextBox"  Width="50px" Enabled ="false"/></td>
+                    <asp:TextBox Text='<%# Bind("AlbumId") %>' runat="server" ID="AlbumIdTextBox"
+                         width="50px" Enabled="false"/></td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("Title") %>' runat="server" ID="TitleTextBoxE" /></td>
+                    <asp:TextBox Text='<%# Bind("Title") %>' runat="server" ID="TitleTextBoxE" 
+                        Width="400px"/></td>
                 <td>
                    
-                      <asp:DropDownList ID="ArtistList" runat="server" 
-                        DataSourceID="ArtistListODS" DataTextField="Name" 
-                        DataValueField="ArtistId" SelectedValue='<%# Bind("ArtistId") %>' Width="300px" >
+                     <asp:DropDownList ID="ArtistList" runat="server" 
+                        DataSourceID="ArtistListODS" 
+                        DataTextField="Name" 
+                        DataValueField="ArtistId"
+                        SelectedValue ='<%# Bind("ArtistId") %>'
+                        Width="300px">
                     </asp:DropDownList>
-
                 </td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("ReleaseYear") %>' runat="server" ID="ReleaseYearTextBox"  Width="50px"/></td>
+                    <asp:TextBox Text='<%# Bind("ReleaseYear") %>' runat="server" 
+                        ID="ReleaseYearTextBoxE" 
+                         Width="50px"/></td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("ReleaseLabel") %>' runat="server" ID="ReleaseLabelTextBox" /></td>
-               
+                    <asp:TextBox Text='<%# Bind("ReleaseLabel") %>' runat="server" ID="ReleaseLabelTextBoxE" /></td>
+              
             </tr>
         </EditItemTemplate>
         <EmptyDataTemplate>
@@ -75,60 +116,90 @@
             </table>
         </EmptyDataTemplate>
         <InsertItemTemplate>
-            <asp:RequiredFieldValidator ID="RequiredvalidtexttboxI" runat="server" ErrorMessage="title is Required" Display ="None"
-                ControlToValidate ="TitleTextBoxI" ValidationGroup ="Igroup"></asp:RequiredFieldValidator>
-             <asp:RequiredFieldValidator ID="RevalidtexttboxI" runat="server" ErrorMessage="title is limited to 160 charater" Display ="None"
-                 ControlToValidate ="TitleTextBoxI" ValidationGroup ="Igroup" ValidationExperssion=" {1,160}$"></asp:RequiredFieldValidator>
-
-
-
+            <asp:RequiredFieldValidator ID="RequiredTitleTextBoxI" runat="server" 
+                ErrorMessage="Title is required" Display="None" 
+                 ControlToValidate="TitleTextBoxI" ValidationGroup="IGroup">
+            </asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegExTitleTextBoxI" runat="server" 
+                ErrorMessage="Title is limited to 160 characters" Display="None"
+                 ControlToValidate="TitleTextBoxI" ValidationGroup="IGroup"
+                 ValidationExpression="^.{1,160}$">
+            </asp:RegularExpressionValidator>
+<%--            <asp:RequiredFieldValidator ID="RequiredReleaseYearTextBoxI" runat="server" 
+                ErrorMessage="Year is required" Display="None" 
+                 ControlToValidate="ReleaseYearTextBoxI" ValidationGroup="IGroup">
+            </asp:RequiredFieldValidator>
+            <asp:RangeValidator ID="RangeReleaseYearTextBoxI" runat="server" 
+                ErrorMessage="Year must be between 1950 and today" Display="None"
+                 ControlToValidate="ReleaseYearTextBoxI" ValidationGroup="IGroup"
+                 MinimumValue="1950" MaximumValue='<%# DateTime.Today.Year %>'
+                 Type="Integer">
+            </asp:RangeValidator>--%>
+            <asp:RegularExpressionValidator ID="RegExReleaseLabelTextBoxI" runat="server" 
+                ErrorMessage="Label is limited to 50 characters" Display="None"
+                 ControlToValidate="ReleaseLabelTextBoxI" ValidationGroup="IGroup"
+                 ValidationExpression="^.{0,50}$">
+            </asp:RegularExpressionValidator>
             <tr style="">
                 <td>
-                    <asp:Button runat="server" CommandName="Insert" Text="Insert" ID="InsertButton" />
+                    <asp:Button runat="server" CommandName="Insert" Text="Insert" ID="InsertButton"
+                         ValidationGroup="IGroup"/>
                     <asp:Button runat="server" CommandName="Cancel" Text="Clear" ID="CancelButton" />
                 </td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("AlbumId") %>' runat="server" ID="AlbumIdTextBox" Width="50px" Enabled ="false"/></td>
+                    <asp:TextBox Text='<%# Bind("AlbumId") %>' runat="server" ID="AlbumIdTextBox"
+                         width="50px" Enabled="false"/></td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("Title") %>' runat="server" ID="TitleTextBoxI" /></td>
+                    <asp:TextBox Text='<%# Bind("Title") %>' runat="server" ID="TitleTextBoxI" 
+                        Width="400px"/></td>
                 <td>
-                   
-                      <asp:DropDownList ID="ArtistList" runat="server" 
-                        DataSourceID="ArtistListODS" DataTextField="Name" 
-                        DataValueField="ArtistId" SelectedValue='<%# Bind("ArtistId") %>' Width="300px" >
-
+                     <asp:DropDownList ID="ArtistList" runat="server" 
+                        DataSourceID="ArtistListODS" 
+                        DataTextField="Name" 
+                        DataValueField="ArtistId"
+                        SelectedValue ='<%# Bind("ArtistId") %>'
+                        Width="300px">
                     </asp:DropDownList>
+
                 </td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("ReleaseYear") %>' runat="server" ID="ReleaseYearTextBox" Width="50px"/></td>
+                    <asp:TextBox Text='<%# Bind("ReleaseYear") %>' runat="server" 
+                        ID="ReleaseYearTextBoxI" Width="50px"/></td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("ReleaseLabel") %>' runat="server" ID="ReleaseLabelTextBox" /></td>
-                
+                    <asp:TextBox Text='<%# Bind("ReleaseLabel") %>' runat="server" 
+                        ID="ReleaseLabelTextBoxI" /></td>
+              
             </tr>
         </InsertItemTemplate>
         <ItemTemplate>
             <tr style="background-color: #E0FFFF; color: #333333;">
                 <td>
-                    <asp:Button runat="server" CommandName="Delete" Text="Remove" ID="DeleteButton"  OnClientClick ="return confirm('Are you sure you want to remove')"/>
+                    <asp:Button runat="server" CommandName="Delete" Text="Remove" ID="DeleteButton" 
+                         OnClientClick="return confirm('Are you sure you wish to remove.')"/>
                     <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
                 </td>
                 <td>
-                    <asp:Label Text='<%# Eval("AlbumId") %>' runat="server" ID="AlbumIdLabel"  Width="50px" Enabled ="false"/></td>
+                    <asp:Label Text='<%# Eval("AlbumId") %>' runat="server" ID="AlbumIdLabel"
+                         width="50px" Enabled="false"/></td>
                 <td>
-                    <asp:Label Text='<%# Eval("Title") %>' runat="server" ID="TitleLabel" /></td>
+                    <asp:Label Text='<%# Eval("Title") %>' runat="server" ID="TitleLabel" 
+                        Width="400px"/></td>
                 <td>
-                      <asp:DropDownList ID="ArtistList" runat="server" 
-                        DataSourceID="ArtistListODS" DataTextField="Name" 
-                        DataValueField="ArtistId" SelectedValue='<%# Eval("ArtistId") %>' Enabled="false" Width="300px" >
-
+                     <asp:DropDownList ID="ArtistList" runat="server" 
+                        DataSourceID="ArtistListODS" 
+                        DataTextField="Name" 
+                        DataValueField="ArtistId"
+                        SelectedValue ='<%# Eval("ArtistId") %>'
+                        Enabled="false" Width="300px">
                     </asp:DropDownList>
 
                 </td>
                 <td>
-                    <asp:Label Text='<%# Eval("ReleaseYear") %>' runat="server" ID="ReleaseYearLabel" Width="50px"/></td>
+                    <asp:Label Text='<%# Eval("ReleaseYear") %>' runat="server" ID="ReleaseYearLabel" 
+                         Width="50px"/></td>
                 <td>
                     <asp:Label Text='<%# Eval("ReleaseLabel") %>' runat="server" ID="ReleaseLabelLabel" /></td>
-               
+              
             </tr>
         </ItemTemplate>
         <LayoutTemplate>
@@ -140,17 +211,18 @@
                                 <th runat="server"></th>
                                 <th runat="server">Id</th>
                                 <th runat="server">Title</th>
-                                <th runat="server">ArtistId</th>
+                                <th runat="server">Artist</th>
                                 <th runat="server">Year</th>
                                 <th runat="server">Label</th>
-                              
+                               
                             </tr>
                             <tr runat="server" id="itemPlaceholder"></tr>
                         </table>
                     </td>
                 </tr>
                 <tr runat="server">
-                    <td runat="server" style="text-align: center; background-color: #5D7B9D; font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000">
+                    <td runat="server" style="text-align: center; background-color: #5D7B9D; 
+                            font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000">
                         <asp:DataPager runat="server" ID="DataPager1">
                             <Fields>
                                 <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowLastPageButton="True"></asp:NextPreviousPagerField>
@@ -163,48 +235,53 @@
         <SelectedItemTemplate>
             <tr style="background-color: #E2DED6; font-weight: bold; color: #333333;">
                 <td>
-                    <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" />
+                    <asp:Button runat="server" CommandName="Delete" Text="Remove" ID="DeleteButton" 
+                         OnClientClick="return confirm('Are you sure you wish to remove.')"/>
                     <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
                 </td>
                 <td>
-                    <asp:Label Text='<%# Eval("AlbumId") %>' runat="server" ID="AlbumIdLabel" Width="50px" Enabled ="false"/></td>
+                    <asp:Label Text='<%# Eval("AlbumId") %>' runat="server" ID="AlbumIdLabel"
+                         width="50px" Enabled="false"/></td>
                 <td>
-                    <asp:Label Text='<%# Eval("Title") %>' runat="server" ID="TitleLabel" /></td>
+                    <asp:Label Text='<%# Eval("Title") %>' runat="server" ID="TitleLabel" 
+                        Width="400px"/></td>
                 <td>
-                    <asp:DropDownList ID="ArtistList" runat="server" 
-                        DataSourceID="ArtistListODS" DataTextField="Name" 
-                        DataValueField="ArtistId" SelectedValue='<%# Eval("ArtistId") %>' Enabled="false" Width="300px" >
+                     <asp:DropDownList ID="ArtistList" runat="server" 
+                        DataSourceID="ArtistListODS" 
+                        DataTextField="Name" 
+                        DataValueField="ArtistId"
+                        SelectedValue ='<%# Eval("ArtistId") %>'
+                        Enabled="false" Width="300px">
+                    </asp:DropDownList>
 
-                    </asp:DropDownList></td>
+                </td>
                 <td>
-                    <asp:Label Text='<%# Eval("ReleaseYear") %>' runat="server" ID="ReleaseYearLabel" Width="50px"/></td>
+                    <asp:Label Text='<%# Eval("ReleaseYear") %>' runat="server" ID="ReleaseYearLabel" 
+                         Width="50px"/></td>
                 <td>
                     <asp:Label Text='<%# Eval("ReleaseLabel") %>' runat="server" ID="ReleaseLabelLabel" /></td>
                
             </tr>
         </SelectedItemTemplate>
     </asp:ListView>
-
-
     <asp:ObjectDataSource ID="AlbumListODS" runat="server" 
         DataObjectTypeName="ChinookSystem.Data.Entities.Album" 
         DeleteMethod="Album_Delete" 
         InsertMethod="Album_Add" 
-        OldValuesParameterFormatString="original_{0}" 
-        SelectMethod="Album_List" 
-        TypeName="ChinookSystem.BLL.AlbumController" 
         UpdateMethod="Album_Update"
+        SelectMethod="Album_List"  
+        OldValuesParameterFormatString="original_{0}" 
+        TypeName="ChinookSystem.BLL.AlbumController"
          OnDeleted="CheckForException"
-         OnInserted="CheckForException"
-         OnUpdated="CheckForException"
-         OnSelected="CheckForException" >
-
+         OnInserted="InsertCheckForException"
+         OnUpdated="UpdateCheckForException"
+         OnSelected="DeleteCheckForException"
+         >
     </asp:ObjectDataSource>
-
-    <asp:ObjectDataSource ID="ArtistListODS" runat="server"
+    <asp:ObjectDataSource ID="ArtistListODS" runat="server" 
         OldValuesParameterFormatString="original_{0}" 
         SelectMethod="Artist_List" 
         TypeName="ChinookSystem.BLL.ArtistController"
-         OnSelected="CheckForException"></asp:ObjectDataSource>
-
+         OnSelected="CheckForException">
+    </asp:ObjectDataSource>
 </asp:Content>
