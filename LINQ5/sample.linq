@@ -1,47 +1,71 @@
 <Query Kind="Expression">
   <Connection>
-    <ID>65e8e5c8-8137-4a00-989c-ee68b541e724</ID>
-    <Persist>true</Persist>
+    <ID>502dd813-ceef-4a93-8663-148ad56997b5</ID>
     <Server>.</Server>
     <Database>Chinook</Database>
   </Connection>
 </Query>
 
-// sample of query extax to show the artists data
-from x in Artists 
+//sample of query syntax to dump the Artist data
+from x in Artists
 select x
 
-// sample of method of to  show the artists data
+//sample of method syntax to dump the Artist data
 Artists
    .Select (x => x)
    
-//sort datainfo.sort(x,y)=> x,Attri
-from x in Artists where x.Name.Contains("son") select x
+//sort  datainfo.Sort((x,y) => x.AttributeName.CompareTo(y.AttributeName))
 
-Artists.Where(x=>x.Name.Contains("son")).Select(x=>x)
+//find any artist whose name cantains the string 'son"
+from x in Artists
+where x.Name.Contains("son")
+select x
 
+Artists
+	.Where(x => x.Name.Contains("son"))
+	.Select(x => x)
+	
+//create a list of albums released in 1970
+//orderby title
+Albums.OrderBy(x => x.Title)
+	.Where(x => x.ReleaseYear == 1970)
+	.Select(x => x)
+	
+from x in Albums
+orderby x.Title
+where x.ReleaseYear == 1970
+select x
 
-//create a list of Album release in 1970
+//create a list of albums release between 2007 and 2018
+//order by release year then by title
+from x in Albums
+where x.ReleaseYear >= 2007
+   && x.ReleaseYear <=2018
+orderby x.ReleaseYear descending, x.Title
+select x
 
-Albums.Where(x=>x.ReleaseYear ==1970).Select(x=>x)
+//note the difference in method names using the method syntax
+// a descending orderby is .OrderByDescending
+// secondary and beyond ordering is .ThenBy
+Albums
+   .Where (x => ((x.ReleaseYear >= 2007) && (x.ReleaseYear <= 2018)))
+   .OrderByDescending (x => x.ReleaseYear)
+   .ThenBy (x => x.Title)
 
+//Can navigational properties by used in queries
+//create a list of albums by Deep Purple
+//order by release year and title
+//Show only the title, artist name, release year and release label
 
-from x in Albums where x.ReleaseYear ==1970 orderby x.Title select x
-
-//create a list the album release between 2007 and 2018 orderby release year by title 
-
-from x in Albums where x.ReleaseYear >=2007 && x.ReleaseYear <=2018 orderby x.Title select x
-
-// another way to create a list 
-Albums.Where(x=>x.ReleaseYear >=2007 && x.ReleaseYear<=2018).OrderBy(x=>x.Title)
-
-// can navigational property bu used in queries
-from x in Albums where x.Artist.Name.Contains("Deep Purple") orderby x.ReleaseYear, x.Title select x
-
-// can customize the label by use  select new {}  
-from x in Albums where x.Artist.Name.Contains("Deep Purple") orderby x.ReleaseYear, x.Title select new 
-{ Title = x.Title, ArtistName = x.Artist.Name, Year = x.ReleaseYear , Label = x.ReleaseLabel }
-
-
-
-
+//use the navigational properties to obtain the Artist data
+//new {....} create a new dataset (class definition)
+from x in Albums
+where x.Artist.Name.Equals("Deep Purple")
+orderby x.ReleaseYear, x.Title
+select new
+{
+	Title = x.Title,
+	ArtistName = x.Artist.Name,
+	RYear = x.ReleaseYear,
+	RLabel = x.ReleaseLabel
+}
