@@ -13,4 +13,5 @@ namespace ChinookSystem.Data.POCOs
         public int RYear { get; set; }
         public string RLabel { get; set; }
     }
+
 }

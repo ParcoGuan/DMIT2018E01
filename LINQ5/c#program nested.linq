@@ -1,4 +1,4 @@
-<Query Kind="Expression">
+<Query Kind="Program">
   <Connection>
     <ID>65e8e5c8-8137-4a00-989c-ee68b541e724</ID>
     <Persist>true</Persist>
@@ -7,10 +7,10 @@
   </Connection>
 </Query>
 
-//create a list of all album contain the album title and artist 
-//along with all the tracks (song name, genre, length) of that album 
+void Main()
+{
 
-from x in Albums
+	var results = from x in Albums
 where x.Tracks.Count() > 0
 select new
 {
@@ -26,20 +26,25 @@ select new
 				length = y.Milliseconds
 			 }
 
+}; results.Dump();
+
 }
 
-from x in Albums
-select new
-{
-	title = x.Title,
-	artist = x.Artist.Name,
-	tracks = from y in Tracks
-			where x.AlbumId == y.AlbumId
-			 select new
-			 {
-			 	song = y.Name,
-				genre = y.Genre.Name,
-				length = y.Milliseconds
-			 }
+// Define other methods and classes here
 
+public class TrackPOCO
+{
+  public string songName {get;set;}
+  public string SongGenre {get;set;}
+  public string songLength {get;set;}
+
+}
+
+public class AlbumDTO
+{
+  public string AlbumTitle{get;set;}
+  public string AlbumArtist {get;set;}
+  public int TrackCount {get;set;}
+  public int PlayTime {get;set;}
+  public List
 }
