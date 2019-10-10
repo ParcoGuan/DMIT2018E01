@@ -1,6 +1,7 @@
 <Query Kind="Expression">
   <Connection>
     <ID>502dd813-ceef-4a93-8663-148ad56997b5</ID>
+    <Persist>true</Persist>
     <Server>.</Server>
     <Database>Chinook</Database>
   </Connection>
@@ -69,3 +70,20 @@ select new
 	RYear = x.ReleaseYear,
 	RLabel = x.ReleaseLabel
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

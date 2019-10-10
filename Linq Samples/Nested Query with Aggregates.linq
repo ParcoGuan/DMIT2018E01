@@ -1,6 +1,6 @@
 <Query Kind="Expression">
   <Connection>
-    <ID>65e8e5c8-8137-4a00-989c-ee68b541e724</ID>
+    <ID>502dd813-ceef-4a93-8663-148ad56997b5</ID>
     <Persist>true</Persist>
     <Server>.</Server>
     <Database>Chinook</Database>
@@ -9,15 +9,17 @@
 
 //create a list of all album contain the album title and artist 
 //along with all the tracks (song name, genre, length) of that album 
-
+//aggregates are executed against a collection of records
+// .Count();.Sum(x => x.field);
+//.Min(x => x.field);.Max(x => x.field);.Average(x => x.field)
 from x in Albums
-where x.Tracks.Count() > 0
+where x.Tracks.Count() > 25
 select new
 {
 	title = x.Title,
 	artist = x.Artist.Name,
-	trackcount=x.Tracks.Count(),
-	playtime=x.Tracks.Sum(z=> z.Milliseconds),
+	trackcount = x.Tracks.Count(),
+	playtime = x.Tracks.Sum(z => z.Milliseconds),
 	tracks = from y in x.Tracks
 			 select new
 			 {
