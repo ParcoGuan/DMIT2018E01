@@ -94,6 +94,9 @@
                                 <asp:MenuItem Text="LinqPad to WebApp"
                                      NavigateUrl="~/SamplePages/DisplayArtistAlbums.aspx">
                                 </asp:MenuItem>
+                                <asp:MenuItem Text="OLTP"
+                                     NavigateUrl="~/SamplePages/ManagePlaylist.aspx">
+                                </asp:MenuItem>
                             </asp:MenuItem>
                         </Items>
                     </asp:Menu>

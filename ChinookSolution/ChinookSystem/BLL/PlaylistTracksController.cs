@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 #region Additional Namespaces
-using Chinook.Data.Entities;
-using Chinook.Data.DTOs;
-using Chinook.Data.POCOs;
+using ChinookSystem.Data.Entities;
+using ChinookSystem.Data.POCOs;
 using ChinookSystem.DAL;
 using System.ComponentModel;
 #endregion
