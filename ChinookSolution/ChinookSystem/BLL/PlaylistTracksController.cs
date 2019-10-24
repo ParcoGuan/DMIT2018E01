@@ -20,9 +20,29 @@ namespace ChinookSystem.BLL
         {
             using (var context = new ChinookContext())
             {
-               
-                //code to go here
 
+                var results = (from x in context.Playlists where x.UserName.Equals(username) && x.Name.Equals(playlistname)
+                               select x).FirstOrDefault();
+
+
+                if(results ==null)
+                {
+                    return null;
+                }
+                else
+                {
+                    var theTracks = from x in context.PlaylistTracks
+                                    where x.PlaylistId.Equals(results.PlaylistId)
+                                    orderby x.TrackNumber
+                                    select new UserPlaylistTrack
+                                    {
+                                        TrackID = x.TrackId,
+                                        TrackNumber = x.TrackNumber,
+                                        TrackName = x.Track.Name,
+                                        Milliseconds = x.Track.Milliseconds,
+                                        UnitPrice = x.Track.UnitPrice
+                                    };
+                }
                 return null;
             }
         }//eom
