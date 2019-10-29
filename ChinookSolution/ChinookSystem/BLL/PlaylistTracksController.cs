@@ -9,6 +9,7 @@ using ChinookSystem.Data.Entities;
 using ChinookSystem.Data.POCOs;
 using ChinookSystem.DAL;
 using System.ComponentModel;
+using DMIT2018Common.UserControls;
 #endregion
 
 namespace ChinookSystem.BLL
@@ -50,9 +51,54 @@ namespace ChinookSystem.BLL
         {
             using (var context = new ChinookContext())
             {
-                //code to go here
-                
-             
+                List<string> reasons = new List<string>();
+                PlaylistTrack  newtrack = null;
+                int tracknumber = 0;
+
+
+
+                Playlist exists = context.Playlists.Where(x => x.UserName.Equals(username, StringComparison.OrdinalIgnoreCase) &&
+                x.Name.Equals(playlistname, StringComparison.OrdinalIgnoreCase)).Select(x => x).FirstOrDefault();
+
+                // Playlist exists =( from x in context.Playlists wherex => x.UserName.Equals(username, StringComparison.OrdinalIgnoreCase &&
+                //x.Name.Equals(playlistname, StringComparison.OrdinalIgnoreCase) select x).FirstOrDefault();
+
+                if (exists == null)
+                {
+                    exists = new Playlist();
+                    exists.Name = playlistname;
+                    exists.UserName = username;
+                    exists = context.Playlists.Add(exists);
+                    tracknumber = 1;
+                }
+                else
+                {
+                    newtrack = exists.PlaylistTracks.SingleOrDefault(x => x.TrackId == trackid);
+                    if(newtrack ==null)
+                    {
+                        tracknumber = exists.PlaylistTracks.Count() + 1;
+                    }
+                    else
+                    {
+                        reasons.Add("Track already exists on playlist");
+                    }
+                }
+
+                if(reasons.Count()>0)
+                {
+                    throw new BusinessRuleException("adding track to playlist", reasons);
+                }
+                else
+                {
+                    newtrack = new PlaylistTrack();
+                    newtrack.TrackId = trackid;
+                    newtrack.TrackNumber = tracknumber;
+
+                    exists.PlaylistTracks.Add(newtrack);
+                    context.SaveChanges();
+                }
+
+
             }
         }//eom
         public void MoveTrack(string username, string playlistname, int trackid, int tracknumber, string direction)

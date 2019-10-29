@@ -130,6 +130,7 @@ namespace Jan2018DemoWebsite.SamplePages
  
         }
 
+
         protected void MoveTrack(int trackid, int tracknumber, string direction)
         {
             //call BLL to move track
@@ -146,7 +147,29 @@ namespace Jan2018DemoWebsite.SamplePages
         protected void TracksSelectionList_ItemCommand(object sender, 
             ListViewCommandEventArgs e)
         {
-            //code to go here
+            if (string.IsNullOrEmpty(PlaylistName.Text))
+            {
+                MessageUserControl.ShowInfo("Required data", "play list name is required to add a track");
+            }
+            else
+            {
+                string playlistname = PlaylistName.Text;
+
+                string username = "HansenB";
+                int trackid = int.Parse(e.CommandArgument.ToString());
+
+                MessageUserControl.TryRun(() =>
+                {
+                    PlaylistTracksController sysmgr = new PlaylistTracksController();
+                    sysmgr.Add_TrackToPLaylist(playlistname, username, trackid);
+                    List<UserPlaylistTrack> datainfo = sysmgr.List_TracksForPlaylist(playlistname, username);
+
+                    PlayList.DataSource = datainfo;
+                    PlayList.DataBind();
+
+                }
+                ,"Adding a Track", "Track has been added to the playlist");
+            }
             
         }
 
