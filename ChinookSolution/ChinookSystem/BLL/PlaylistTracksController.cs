@@ -105,9 +105,89 @@ namespace ChinookSystem.BLL
         {
             using (var context = new ChinookContext())
             {
-                //code to go here 
+                var exists = (from x in context.Playlists where x.UserName.Equals(username,StringComparison.OrdinalIgnoreCase) 
+                              && x.Name.Equals(playlistname,StringComparison.OrdinalIgnoreCase) select x).FirstOrDefault();
 
+
+                if (exists == null)
+                {
+                    throw new Exception("playlist does not exist");
+                }
+                else
+                {
+                    PlaylistTrack movetrack = (from x in context.PlaylistTracks where x.TrackId == trackid select x).FirstOrDefault();
+               
+                if (movetrack == null)
+                {
+                    throw new Exception("track can not be empty");
+
+                }
+                else
+                {
+                    PlaylistTrack othertrack = null;
+
+                    if(direction.Equals("up"))
+                    {
+                       if(tracknumber==1)
+                       {
+                                throw new Exception("track 1 cannot be moved up");
+                       }
+                       else
+                       {
+                             othertrack = (from x in exists.PlaylistTracks where x.TrackNumber == movetrack.TrackNumber -1 select x).FirstOrDefault();
+
+
+
+                                if(othertrack==null)
+                                {
+                                    throw new Exception("play list is corrupt.fecth play list again");
+                                }
+                                else
+                                {
+                                    movetrack.TrackNumber -= 1;
+                                    othertrack.TrackNumber += 1;
+                                }
+                       }
+
+
+
+
+                    }
+                        else
+                        {
+                            if (tracknumber == )
+                            {
+                                throw new Exception("track 1 cannot be moved down");
+                            }
+                            else
+                            {
+                                othertrack = (from x in exists.PlaylistTracks where x.TrackNumber == movetrack.TrackNumber - 1 select x).FirstOrDefault();
+
+
+                                if (othertrack == null)
+                                {
+                                    throw new Exception("play list is corrupt.fecth play list again");
+                                }
+                                else
+                                {
+                                    movetrack.TrackNumber += 1;
+                                    othertrack.TrackNumber -= 1;
+                                }
+                            }
+                        }
+                        context.Entry(movetrack).Property(y => y.TrackNumber).IsModified = true;
+                        context.Entry(othertrack).Property(y => y.TrackNumber).IsModified = true;
+
+                        context.SaveChanges();
+                    }
+
+
+                }
             }
+
+            
+
+            
         }//eom
 
 

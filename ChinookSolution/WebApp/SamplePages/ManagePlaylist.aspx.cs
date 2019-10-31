@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 #region Additonal Namespaces
 using ChinookSystem.BLL;
 using ChinookSystem.Data.POCOs;
+using DMIT2018Common.UserControls;
 
 #endregion
 
@@ -121,6 +122,50 @@ namespace Jan2018DemoWebsite.SamplePages
         protected void MoveDown_Click(object sender, EventArgs e)
         {
             //code to go here
+
+            List<string> reasons = new List<string>();
+            if(PlayList.Rows.Count==0)
+            {
+                reasons.Add ("there is no playlist presend");
+            }
+            if (string.IsNullOrEmpty(PlaylistName.Text))
+            {
+                reasons.Add("you must have playlist name");
+            }
+
+
+            int trackid = 0;
+            int tracknumber = 0;
+            int rowseleted = 0;
+            CheckBox playlistselection = null;
+            for (int i = 0; i < PlayList.Rows.Count; i++)
+            {
+                playlistselection = PlayList.Rows[i].FindControl("selectd") as CheckBox;
+
+                if(playlistselection.Checked)
+                {
+                    rowseleted++;
+                    trackid = int.Parse((PlayList.Rows[i].FindControl("trackid") as Label).Text);
+                    tracknumber = int.Parse((PlayList.Rows[i].FindControl("tracknumber") as Label).Text);
+                }
+            }
+            if(rowseleted !=1)
+            {
+                reasons.Add("select only one track to move");
+            }
+            if (tracknumber == PlayList.Rows.Count)
+            {
+                reasons.Add("first track number is moved  up");
+            }
+            if(reasons.Count==0)
+            {
+                MoveTrack(trackid, tracknumber, "up");
+            }
+            else
+            {
+                MessageUserControl.TryRun(() => throw new BusinessRuleException("track move", reasons));
+            }
+
  
         }
 
@@ -134,7 +179,16 @@ namespace Jan2018DemoWebsite.SamplePages
         protected void MoveTrack(int trackid, int tracknumber, string direction)
         {
             //call BLL to move track
- 
+            MessageUserControl.TryRun(() => {
+                PlaylistTracksController sysmgr = new PlaylistTracksController(); sysmgr.MoveTrack("HansenB", PlaylistName.Text, trackid, tracknumber, direction);
+                List<UserPlaylistTrack> datainfo = sysmgr.List_TracksForPlaylist(PlaylistName.Text, "HansenB");
+                PlayList.DataSource = datainfo;
+                PlayList.DataBind();
+
+            }, "Success", "track has been moved");
+
+
+            
         }
 
 
