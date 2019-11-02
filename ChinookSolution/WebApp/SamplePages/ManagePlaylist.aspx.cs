@@ -194,7 +194,55 @@ namespace Jan2018DemoWebsite.SamplePages
 
         protected void DeleteTrack_Click(object sender, EventArgs e)
         {
-            //code to go here
+            if(string.IsNullOrEmpty(PlaylistName.Text))
+            {
+                MessageUserControl.ShowInfo("Required data", "playlist name is required to add a track");
+            }
+            else
+            {
+                if(PlayList.Rows.Count==0)
+                {
+                    MessageUserControl.ShowInfo("required data", "no playlist is available review you playlist");
+                }
+
+                else
+                {
+                    List<int> tracktodelete = new List<int>();
+                    int rowselectd = 0;
+                    CheckBox playlistselection = null;
+                    for (int i = 0; i <= PlayList.Rows.Count; i++)
+                    {
+                        playlistselection = PlayList.Rows[i].FindControl("selectd") as CheckBox;
+
+                        if (playlistselection.Checked)
+                        {
+                            rowselectd++;
+                            tracktodelete.Add (int.Parse((PlayList.Rows[i].FindControl("trackid") as Label).Text));
+                            
+                        }
+                       
+                    }
+                    if (rowselectd==0)
+                    {
+                        MessageUserControl.ShowInfo("Requried Data", "you must select at least one track to remove.");
+                    }
+                    
+                    
+                    else
+                        {
+                            MessageUserControl.TryRun(() =>
+                            {
+                                PlaylistTracksController sysmgr = new PlaylistTracksController();
+                                sysmgr.DeleteTracks("HansenB",PlaylistName.Text,tracktodelete);
+                                List<UserPlaylistTrack> datainfo = sysmgr.List_TracksForPlaylist(PlaylistName.Text,"HansenB");
+                                PlayList.DataSource = datainfo;
+                                PlayList.DataBind();
+
+                            }
+                          , "Adding a Track", "Track has been added to the playlist");
+                        }
+                }
+            }
  
         }
 

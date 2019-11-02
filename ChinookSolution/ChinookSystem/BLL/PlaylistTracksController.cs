@@ -155,7 +155,7 @@ namespace ChinookSystem.BLL
                     }
                         else
                         {
-                            if (tracknumber == )
+                            if (tracknumber == exists.PlaylistTracks.Count())
                             {
                                 throw new Exception("track 1 cannot be moved down");
                             }
@@ -195,8 +195,47 @@ namespace ChinookSystem.BLL
         {
             using (var context = new ChinookContext())
             {
-               //code to go here
 
+
+
+
+
+                var exists = (from x in context.Playlists
+                              where x.UserName.Equals(username, StringComparison.OrdinalIgnoreCase)
+                              && x.Name.Equals(playlistname, StringComparison.OrdinalIgnoreCase)
+                              select x).FirstOrDefault();
+                if(exists==null)
+                {
+                    throw new Exception("Play list has been removed");
+                }
+                else
+                {
+                    var trackkept = exists.PlaylistTracks.Where(tr => !trackstodelete.Any(tod => tr.TrackId == tod)).Select(tr => tr).ToList();
+
+                    PlaylistTrack item = null;
+                    foreach (var dtrackid in trackstodelete)
+                    {
+                        item = exists.PlaylistTracks.Where(tr => tr.TrackId == dtrackid).FirstOrDefault();
+
+                        if(item!=null)
+                        {
+                            exists.PlaylistTracks.Remove(item);
+                        }
+
+                        int number = 1;
+                        trackkept.Sort((x, y) => x.TrackNumber.CompareTo(y.TrackNumber));
+
+
+                        foreach (var tkept in trackkept)
+                        {
+                            tkept.TrackNumber = number;
+                            context.Entry(tkept).Property(y => y.TrackNumber).IsModified = true;
+                            number++;
+
+                        }
+                        context.SaveChanges();
+                    }
+                }
 
             }
         }//eom
