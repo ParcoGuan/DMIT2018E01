@@ -229,6 +229,7 @@
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
     <Content Include="WebConnectionStrings.config" />
+    <Content Include="webapp.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\AddPhoneNumber.aspx.cs">
@@ -394,6 +395,7 @@
     <Compile Include="SamplePages\ManagePlaylist.aspx.designer.cs">
       <DependentUpon>ManagePlaylist.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Security\SecurityDbContextInitializer.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
