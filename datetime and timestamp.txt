@@ -1,0 +1,122 @@
+DateTime since = DateTime.Now.AddHours(-24);
+var records = from record in db.Logins
+    where record.Users.UserId == userId
+        && record.Timestamp >= since
+    select record;
+
+
+
+
+
+
+
+CodeBehind
+
+int infant = int.Parse(InfantTickets.SelectedValue);
+	            int child = int.Parse(ChildTickets.SelectedValue);
+	            int teen = int.Parse(TeenTickets.SelectedValue);
+	            int adult = int.Parse(AdultTickets.SelectedValue);
+	            int senior = int.Parse(SeniorTickets.SelectedValue);
+	
+	            MessageUserControl.TryRun(() =>
+	            {
+	                if ((infant != 0 || child!=0) && (teen ==0 &&adult==0 && senior ==0))
+	                {
+	                    MessageUserControl.ShowInfo("Invalud",
+	                    "Child and Infant need company");
+	                } else if (double.Parse(TotalPrice.Text) == 0.0)
+	                {
+	                    MessageUserControl.ShowInfo("Invalud",
+	                    "At least buy something!");
+	                }
+	                else
+	                {
+	                    int showTimeID = int.Parse(ShowTimeList.SelectedValue);
+	                    decimal premiumPrice = decimal.Parse(TicketPremium.Text);
+	                    List<TicketType> newList = new List<TicketType>();
+	                    TicketType item ;
+	                   
+	                        item = new TicketType("Infant", infant, decimal.Parse(InfantPrice.Text));
+	                        newList.Add(item);
+	                   
+	                   
+	                        item = new TicketType("Child", child, decimal.Parse(ChildPrice.Text));
+	                        newList.Add(item);
+	                     
+	                        item = new TicketType("Teen", teen, decimal.Parse(TeenPrice.Text));
+	                        newList.Add(item);
+	                   
+	                        item = new TicketType("Adult", adult, decimal.Parse(AdultPrice.Text));
+	                        newList.Add(item);
+	                   
+	                        item = new TicketType("Senior", senior, decimal.Parse(SeniorPrice.Text));
+	                        newList.Add(item);
+	                   
+	                    TicketRequest request = new TicketRequest();
+	                    request.PremiumPrice = premiumPrice;
+	                    request.RequireTickets = newList;
+	                    request.ShowTimeID = showTimeID;
+	
+	                    TicketsController sysmgr = new TicketsController();
+	                    sysmgr.Tickets_BuyTickets(request);
+	                    MessageUserControl.ShowInfo("Succeed",
+	                    "See your new tickets on another page");
+	                }
+	            });
+
+
+
+
+
+
+
+
+
+
+
+
+Controller
+
+
+
+
+
+using (var context = new OMSTContext())
+	            {
+	                int theatreSize = (from x in context.ShowTimes
+	                                   where x.ShowTimeID == request.ShowTimeID
+	                                   select x.Theatre.SeatingSize).FirstOrDefault();
+	                int ticketSold = (from x in context.Tickets
+	                                  where x.ShowTimeID == request.ShowTimeID
+	                                  select x).Count();
+	                if ((request.RequireTickets.Count() + ticketSold) > theatreSize)
+	                {
+	                    throw new Exception("Not enough seats left");
+	                }
+	                else
+	                {
+	                    try
+	                    {
+	                        foreach (TicketType item in request.RequireTickets)
+	                        {
+	                            Ticket newTicket = new Ticket();
+	                            for (int i = item.Quantity; i > 0; i--)
+	                            {
+	                                newTicket.ShowTimeID = request.ShowTimeID;
+	                                newTicket.TicketCategoryID = (from x in context.TicketCategories
+	                                                              where x.Description.Equals(item.CategoryDescription)
+	                                                              select x.TicketCategoryID).FirstOrDefault();
+	                                newTicket.TicketPremium = request.PremiumPrice;
+	                                newTicket.TicketPrice = item.Price;
+	                                context.Tickets.Add(newTicket);
+	                                newTicket = new Ticket();
+	                            }                            
+	                        }
+	                        context.SaveChanges();
+	                    }
+	                    catch (Exception ex)
+	                    {
+	                        throw ex;
+	                    }
+	                }
+
