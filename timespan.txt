@@ -1,0 +1,24 @@
+DateTime time = flightTime.AddMinute(30);
+
+airportTimetable = from r in db.ShuttleTimeTables 
+                    where r.TimeTypeId == 1 && r.Time >= time
+                    select new SelectListItem 
+                  { 
+                      Value = r.Time.ToString(), 
+                      Text = r.Time.ToString("HH:mm:ss") };
+
+
+
+
+
+TimeSpan time = flightTime.Add(TimeSpan.FromMinutes(30));
+
+airportTimetable = from r in db.ShuttleTimeTables 
+                    where r.TimeTypeId == 1 && r.Time >= time
+                    select new SelectListItem 
+                  { 
+                      Value = r.Time.ToString(), 
+                      Text = r.Time.ToString(@"hh\:mm\:ss") };
+
+
+https://www.codeproject.com/Questions/834688/How-to-use-linq-to-query-field-type-is-time-and-ad
