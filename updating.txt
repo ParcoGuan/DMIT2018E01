@@ -1,0 +1,5 @@
+orderlist toeditng = new orderlist { orderid= itme.orderid}
+var extting = context.Entry(itme)
+
+extting.state= System.Data.Entity.EntityState.Modified;
+context.SaveChanges();
